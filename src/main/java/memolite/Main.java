@@ -2,14 +2,25 @@ package memolite;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import memolite.controller.RootController;
+import memolite.service.TopicService;
+import memolite.view.RootLayout;
 
 public class Main extends Application {
-    @Override public void start(Stage stage) {
-        stage.setScene(new Scene(new Label("Hello MemoLite!"), 320, 200));
+    @Override
+    public void start(Stage stage) {
+        TopicService service = new TopicService();
+        RootLayout rootLayout = new RootLayout();
+        RootController rootController = new RootController(rootLayout, service);
+
+        Scene scene = new Scene(rootController.getRoot(), 600, 400);
+        stage.setScene(scene);
         stage.setTitle("MemoLite");
         stage.show();
     }
-    public static void main(String[] args) { launch(); }
+
+    public static void main(String[] args) {
+        launch();
+    }
 }
