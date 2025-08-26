@@ -15,7 +15,7 @@ public class ShuffleView {
 
     public ShuffleView() {
 
-        shuffleButton.setStyle("-fx-font-size: 18px; -fx-padding: 10 20;");
+        shuffleButton.setId("shuffleButton");
         resultLabel.setStyle("-fx-font-size: 40px;");
 
         VBox box = new VBox(10, shuffleButton, resultLabel);

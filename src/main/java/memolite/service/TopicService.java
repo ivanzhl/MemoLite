@@ -6,17 +6,20 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Random;
 
 public class TopicService {
     private final List<String> topics = new ArrayList<>();
     private final ObjectMapper mapper = new ObjectMapper();
-    private final File storageFile = new File("userdata/topics.json");
-    private final Random random = new Random();
+    private final File file = new File("topics.json");
 
     public TopicService() {
         loadTopics();
+    }
+
+    public List<String> getTopics() {
+        return topics;
     }
 
     public void addTopic(String topic) {
@@ -26,34 +29,34 @@ public class TopicService {
         }
     }
 
+    public void removeTopic(String topic) {
+        topics.remove(topic);
+        saveTopics();
+    }
+
     public String shuffleTopic() {
-        if (topics.isEmpty()) {
-            return "No topics available";
-        }
-        return topics.get(random.nextInt(topics.size()));
-    }
-
-    public List<String> getAllTopics() {
-        return new ArrayList<>(topics);
-    }
-
-    private void saveTopics() {
-        try {
-            mapper.writerWithDefaultPrettyPrinter().writeValue(storageFile, topics);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        if (topics.isEmpty()) return "No topics available.";
+        Collections.shuffle(topics);
+        return topics.get(0);
     }
 
     private void loadTopics() {
-        if (storageFile.exists()) {
+        if (file.exists()) {
             try {
-                List<String> loaded = mapper.readValue(storageFile, new TypeReference<>() {});
+                List<String> loaded = mapper.readValue(file, new TypeReference<>() {});
                 topics.clear();
                 topics.addAll(loaded);
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+    }
+
+    private void saveTopics() {
+        try {
+            mapper.writerWithDefaultPrettyPrinter().writeValue(file, topics);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

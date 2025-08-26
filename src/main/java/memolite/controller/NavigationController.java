@@ -14,7 +14,7 @@ public class NavigationController {
         this.navigationView = navigationView;
 
         this.shuffleView = new ShuffleView();
-        this.editTopicsView = new EditTopicsView();
+        this.editTopicsView = new EditTopicsView(service);
 
         new ShuffleController(service, shuffleView);
 
