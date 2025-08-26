@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class TopicService {
+public class TopicsMemoryService {
     private final List<String> topics = new ArrayList<>();
     private final ObjectMapper mapper = new ObjectMapper();
-    private final File file = new File("topics.json");
+    private final File file = new File("userdata/topics.json");
 
-    public TopicService() {
+    public TopicsMemoryService() {
         loadTopics();
     }
 
@@ -37,13 +37,14 @@ public class TopicService {
     public String shuffleTopic() {
         if (topics.isEmpty()) return "No topics available.";
         Collections.shuffle(topics);
-        return topics.get(0);
+        return topics.getFirst();
     }
 
     private void loadTopics() {
         if (file.exists()) {
             try {
-                List<String> loaded = mapper.readValue(file, new TypeReference<>() {});
+                List<String> loaded = mapper.readValue(file, new TypeReference<>() {
+                });
                 topics.clear();
                 topics.addAll(loaded);
             } catch (IOException e) {

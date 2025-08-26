@@ -1,22 +1,22 @@
 package memolite.controller;
 
 import javafx.scene.layout.BorderPane;
-import memolite.service.TopicService;
 import memolite.view.*;
 
 public class NavigationController {
-
     private final NavigationView navigationView;
     private final ShuffleView shuffleView;
     private final EditTopicsView editTopicsView;
+    private final ShuffleController shuffleController;
+    private final EditTopicsController editTopicsController;
 
-    public NavigationController(NavigationView navigationView, TopicService service) {
+    public NavigationController(NavigationView navigationView) {
         this.navigationView = navigationView;
-
         this.shuffleView = new ShuffleView();
-        this.editTopicsView = new EditTopicsView(service);
+        this.editTopicsView = new EditTopicsView();
 
-        new ShuffleController(service, shuffleView);
+        this.shuffleController = new ShuffleController(shuffleView);
+        this.editTopicsController = new EditTopicsController(editTopicsView);
 
         initHandlers();
         navigationView.setContent(shuffleView.getRoot());

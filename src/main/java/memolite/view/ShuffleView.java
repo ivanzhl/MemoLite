@@ -9,16 +9,14 @@ import javafx.scene.layout.VBox;
 
 public class ShuffleView {
     private final BorderPane root = new BorderPane();
-
     private final Button shuffleButton = new Button("Shuffle");
     private final Label resultLabel = new Label("");
 
     public ShuffleView() {
-
         shuffleButton.setId("shuffleButton");
-        resultLabel.setStyle("-fx-font-size: 40px;");
+        resultLabel.setId("ResultLabel");
 
-        VBox box = new VBox(10, shuffleButton, resultLabel);
+        final VBox box = new VBox(10, shuffleButton, resultLabel);
         box.setAlignment(Pos.CENTER);
 
         StackPane centerPane = new StackPane(box);
@@ -28,7 +26,15 @@ public class ShuffleView {
         root.setCenter(centerPane);
     }
 
-    public BorderPane getRoot() { return root; }
-    public Button getShuffleButton() { return shuffleButton; }
-    public Label getResultLabel() { return resultLabel; }
+    public BorderPane getRoot() {
+        return root;
+    }
+
+    public Button getShuffleButton() {
+        return shuffleButton;
+    }
+
+    public Label getResultLabel() {
+        return resultLabel;
+    }
 }

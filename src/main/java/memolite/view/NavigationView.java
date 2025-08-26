@@ -11,41 +11,34 @@ public class NavigationView {
 
     private final Button mainMenuButton = new Button("Shuffle Topics");
     private final Button editTopicsButton = new Button("Edit Topics");
-
     private final StackPane contentArea = new StackPane();
 
     public NavigationView() {
-        HBox centeredButtons = new HBox(10, mainMenuButton, editTopicsButton);
+        final HBox centeredButtons = new HBox(10, mainMenuButton, editTopicsButton);
+        final ToolBar topBar = new ToolBar(centeredButtons);
+
         centeredButtons.setAlignment(Pos.CENTER);
-
-        ToolBar topBar = new ToolBar(centeredButtons);
         topBar.setPrefHeight(50);
-        topBar.setStyle("""
-            -fx-background-color: linear-gradient(to right, #f8f9fa, #e9ecef);
-            -fx-border-color: #dcdcdc;
-            -fx-border-width: 0 0 1 0;
-        """);
+        topBar.setId("topBar");
 
-        // Button style
-        mainMenuButton.setStyle(buttonStyle());
-        editTopicsButton.setStyle(buttonStyle());
+        mainMenuButton.setId("topBarButtons");
+        editTopicsButton.setId("topBarButtons");
 
         root.setTop(topBar);
         root.setCenter(contentArea);
     }
 
-    private String buttonStyle() {
-        return """
-            -fx-background-color: transparent;
-            -fx-text-fill: #333;
-            -fx-font-size: 14px;
-            -fx-padding: 6 16;
-        """;
+    public BorderPane getRoot() {
+        return root;
     }
 
-    public BorderPane getRoot() { return root; }
-    public Button getMainMenuButton() { return mainMenuButton; }
-    public Button getEditTopicsButton() { return editTopicsButton; }
+    public Button getMainMenuButton() {
+        return mainMenuButton;
+    }
+
+    public Button getEditTopicsButton() {
+        return editTopicsButton;
+    }
 
     public void setContent(Node content) {
         contentArea.getChildren().setAll(content);
