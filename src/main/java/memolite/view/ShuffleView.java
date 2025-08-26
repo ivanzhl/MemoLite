@@ -1,0 +1,40 @@
+package memolite.view;
+
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
+
+public class ShuffleView {
+    private final BorderPane root = new BorderPane();
+    private final Button shuffleButton = new Button("Shuffle");
+    private final Label resultLabel = new Label("");
+
+    public ShuffleView() {
+        shuffleButton.setId("shuffleButton");
+        resultLabel.setId("ResultLabel");
+
+        final VBox box = new VBox(10, shuffleButton, resultLabel);
+        box.setAlignment(Pos.CENTER);
+
+        StackPane centerPane = new StackPane(box);
+        centerPane.setAlignment(Pos.CENTER);
+        StackPane.setMargin(box, new Insets(0, 0, 50, 0));
+
+        root.setCenter(centerPane);
+    }
+
+    public BorderPane getRoot() {
+        return root;
+    }
+
+    public Button getShuffleButton() {
+        return shuffleButton;
+    }
+
+    public Label getResultLabel() {
+        return resultLabel;
+    }
+}
