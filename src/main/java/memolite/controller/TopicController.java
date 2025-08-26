@@ -14,12 +14,6 @@ public class TopicController {
     }
 
     private void initHandlers() {
-        view.getAddButton().setOnAction(e -> {
-            String topic = view.getInputField().getText();
-            service.addTopic(topic);
-            view.getInputField().clear();
-        });
-
         view.getShuffleButton().setOnAction(e -> {
             String topic = service.shuffleTopic();
             view.getResultLabel().setText(topic);

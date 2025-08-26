@@ -1,5 +1,6 @@
 package memolite;
 
+import atlantafx.base.theme.CupertinoLight;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -15,6 +16,8 @@ public class Main extends Application {
         RootController rootController = new RootController(rootLayout, service);
 
         Scene scene = new Scene(rootController.getRoot(), 600, 400);
+        stage.setResizable(false);
+        scene.getStylesheets().add(new CupertinoLight().getUserAgentStylesheet());
         stage.setScene(scene);
         stage.setTitle("MemoLite");
         stage.show();
