@@ -1,13 +1,13 @@
 package memolite.controller;
 
 import memolite.service.TopicService;
-import memolite.view.MainView;
+import memolite.view.ShuffleView;
 
-public class TopicController {
+public class ShuffleController {
     private final TopicService service;
-    private final MainView view;
+    private final ShuffleView view;
 
-    public TopicController(TopicService service, MainView view) {
+    public ShuffleController(TopicService service, ShuffleView view) {
         this.service = service;
         this.view = view;
         initHandlers();

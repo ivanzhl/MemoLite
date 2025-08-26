@@ -4,18 +4,18 @@ import atlantafx.base.theme.CupertinoLight;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import memolite.controller.RootController;
+import memolite.controller.NavigationController;
 import memolite.service.TopicService;
-import memolite.view.RootLayout;
+import memolite.view.NavigationView;
 
 public class Main extends Application {
     @Override
     public void start(Stage stage) {
         TopicService service = new TopicService();
-        RootLayout rootLayout = new RootLayout();
-        RootController rootController = new RootController(rootLayout, service);
+        NavigationView navigationView = new NavigationView();
+        NavigationController navigationController = new NavigationController(navigationView, service);
 
-        Scene scene = new Scene(rootController.getRoot(), 600, 400);
+        Scene scene = new Scene(navigationController.getRoot(), 600, 400);
         stage.setResizable(false);
         scene.getStylesheets().add(new CupertinoLight().getUserAgentStylesheet());
         stage.setScene(scene);

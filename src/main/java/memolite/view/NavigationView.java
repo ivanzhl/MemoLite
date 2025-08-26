@@ -6,7 +6,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 
-public class RootLayout {
+public class NavigationView {
     private final BorderPane root = new BorderPane();
 
     private final Button mainMenuButton = new Button("Main Menu");
@@ -14,7 +14,7 @@ public class RootLayout {
 
     private final StackPane contentArea = new StackPane();
 
-    public RootLayout() {
+    public NavigationView() {
         HBox topBar = new HBox(10, mainMenuButton, editTopicsButton);
         topBar.setAlignment(Pos.CENTER);
         topBar.setPadding(new Insets(10));
