@@ -16,9 +16,7 @@ Runs on macOS (Intel/Apple Silicon), Linux, and Windows.
 ## Run the project
 
 1. Clone the Repository
-   ```bash
-   git clone https://github.com/YOURUSER/MemoLite.git
-   cd MemoLite
+
 2. Start the App
     ```bash
    mvn clean javafx:run
