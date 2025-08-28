@@ -13,9 +13,9 @@ public class EditTopicsController {
     private final EditTopicsView view;
     private final TopicsMemoryService service;
 
-    public EditTopicsController(EditTopicsView view) {
+    public EditTopicsController(EditTopicsView view, TopicsMemoryService service) {
         this.view = view;
-        this.service = new TopicsMemoryService();
+        this.service = service;
 
         initHandlers();
         loadTopics();

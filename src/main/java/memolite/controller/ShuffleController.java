@@ -13,9 +13,9 @@ public class ShuffleController {
     private final ShuffleView view;
     private final TopicsMemoryService service;
 
-    public ShuffleController(ShuffleView view) {
+    public ShuffleController(ShuffleView view,  TopicsMemoryService service) {
         this.view = view;
-        this.service = new TopicsMemoryService();
+        this.service = service;
 
         initHandlers();
     }
