@@ -5,6 +5,7 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.control.Button;
 import javafx.util.Duration;
+import memolite.constants.ViewMessages;
 import memolite.service.TopicsMemoryService;
 import memolite.view.ShuffleView;
 
@@ -16,6 +17,8 @@ public class ShuffleController {
     public ShuffleController(ShuffleView view, TopicsMemoryService service) {
         this.view = view;
         this.service = service;
+        service.startNewSession();
+        view.getResultLabel().setText(ViewMessages.DEFAULT_SHUFFLE_MESSAGE);
 
         initHandlers();
     }

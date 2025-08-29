@@ -3,12 +3,12 @@ package memolite.service;
 import java.util.Collections;
 import java.util.List;
 
-public class ShuffleService {
+public class ShuffleCycleService {
 
     private final List<String> topics;
     private int currentTopicIndex;
 
-    public ShuffleService(List<String> topics) {
+    public ShuffleCycleService(List<String> topics) {
         this.topics = topics;
         this.currentTopicIndex = 0;
     }
