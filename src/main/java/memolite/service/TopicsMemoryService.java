@@ -2,6 +2,7 @@ package memolite.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import memolite.constants.ViewMessages;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,11 +14,15 @@ public class TopicsMemoryService {
     private final ObjectMapper mapper = new ObjectMapper();
     private final File file = new File("userdata/topics.json");
 
-    private final ShuffleService shuffleService;
+    private final ShuffleCycleService shuffleCycleService;
 
     public TopicsMemoryService() {
         loadTopics();
-        this.shuffleService = new ShuffleService(topics);
+        this.shuffleCycleService = new ShuffleCycleService(topics);
+    }
+
+    public void startNewSession() {
+        shuffleCycleService.startNewSession();
     }
 
     public List<String> getTopics() {
@@ -38,12 +43,12 @@ public class TopicsMemoryService {
     }
 
     public String getTopic() {
-        if (topics.isEmpty()) return "No Topics available";
+        if (topics.isEmpty()) return ViewMessages.EMPTY_TOPIC_LIST;
 
-        String topic = shuffleService.getCurrentTopicAndMoveToNext();
+        String topic = shuffleCycleService.getCurrentTopicAndMoveToNext();
         if (topic == null) {
-            shuffleService.startNewSession();
-            return "Start new Session";
+            shuffleCycleService.startNewSession();
+            return ViewMessages.CYCLE_COMPLETE;
         }
         return topic;
     }
