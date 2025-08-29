@@ -6,7 +6,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class TopicsMemoryService {
@@ -14,8 +13,11 @@ public class TopicsMemoryService {
     private final ObjectMapper mapper = new ObjectMapper();
     private final File file = new File("userdata/topics.json");
 
+    private final ShuffleService shuffleService;
+
     public TopicsMemoryService() {
         loadTopics();
+        this.shuffleService = new ShuffleService(topics);
     }
 
     public List<String> getTopics() {
@@ -30,14 +32,20 @@ public class TopicsMemoryService {
     }
 
     public void removeTopic(String topic) {
-        topics.remove(topic);
-        saveTopics();
+        if (topics.remove(topic)) {
+            saveTopics();
+        }
     }
 
-    public String shuffleTopic() {
-        if (topics.isEmpty()) return "No topics available.";
-        Collections.shuffle(topics);
-        return topics.getFirst();
+    public String getTopic() {
+        if (topics.isEmpty()) return "No Topics available";
+
+        String topic = shuffleService.getCurrentTopicAndMoveToNext();
+        if (topic == null) {
+            shuffleService.startNewSession();
+            return "Start new Session";
+        }
+        return topic;
     }
 
     private void loadTopics() {
