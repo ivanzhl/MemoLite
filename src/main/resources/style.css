@@ -23,7 +23,7 @@
 #topBar {
     -fx-background-color: transparent;
     -fx-border-color: #dcdcdc;
-    -fx-border-width: 0 0 1 0;
+    -fx-border-width: 0 0 0 0;
 }
 
 #topBarButtons{
