@@ -13,7 +13,7 @@ public class ShuffleController {
     private final ShuffleView view;
     private final TopicsMemoryService service;
 
-    public ShuffleController(ShuffleView view,  TopicsMemoryService service) {
+    public ShuffleController(ShuffleView view, TopicsMemoryService service) {
         this.view = view;
         this.service = service;
 
@@ -24,7 +24,7 @@ public class ShuffleController {
         final Button shuffleButton = view.getShuffleButton();
 
         shuffleButton.setOnAction(e -> {
-            String topic = service.shuffleTopic();
+            String topic = service.getTopic();
             view.getResultLabel().setText(topic);
         });
 
