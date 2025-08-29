@@ -22,14 +22,8 @@ public class EditTopicsController {
     }
 
     private void initHandlers() {
-        view.getAddButton().setOnAction(e -> {
-            String topic = view.getInputField().getText();
-            if (topic != null && !topic.isBlank()) {
-                service.addTopic(topic);
-                loadTopics();
-                view.getInputField().clear();
-            }
-        });
+        view.getAddButton().setOnAction(e -> {addTopic();});
+        view.getInputField().setOnAction(e -> {addTopic();});
 
         view.getList().setCellFactory(lv -> new ListCell<>() {
             private final Label label = new Label();
@@ -62,6 +56,15 @@ public class EditTopicsController {
                 }
             }
         });
+    }
+
+    private void addTopic() {
+        String topic = view.getInputField().getText();
+        if (topic != null && !topic.isBlank()) {
+            service.addTopic(topic);
+            loadTopics();
+            view.getInputField().clear();
+        }
     }
 
     private void loadTopics() {
